@@ -13,6 +13,7 @@ export class FaceSnapComponent implements OnInit{
   createdAt!:Date;
   snaps!:number;
   imageUrl:string |undefined;
+  snapButtonText!:string;
 
   ngOnInit(): void {
     this.title="My title facesnap";
@@ -20,5 +21,22 @@ export class FaceSnapComponent implements OnInit{
     this.createdAt=new Date();
     this.snaps=0;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
+   this.snapButtonText="Snap liked";
+  }
+   /*onAddSnaps():void{
+    this.snaps++;
+    if(this.snaps>1){
+      alert("Oops Snaps");
+      this.snaps=0;
+    }*/
+   onAddOrRemoveSnap():void{
+    this.snaps++;
+     if(this.snaps>1){
+      this.snaps=0;
+      this.snapButtonText="Unliked Snap"
+     }else{
+      this.snapButtonText="Snap liked";
+     }
    }
+   
 }

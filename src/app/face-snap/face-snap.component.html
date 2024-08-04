@@ -2,5 +2,7 @@
 <img [src]="imageUrl" [alt]="title"/>
 <p>published online date: {{ createdAt }}</p>
 <p>{{ description }}</p>
-<p>🤌 {{ snaps }}</p>
-<!--p><img src="{{imageUrl}}" /></p-->>
+<p> <button (click)="onSnap()">{{snapButtonText}}</button>
+    🤌 {{ snaps }}
+</p>
+<!--p><img src="{{imageUrl}}" /></p-->
