@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FaceSnap } from '../models/face-snap';
 
 @Component({
   selector: 'app-face-snap',
@@ -8,20 +9,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrl: './face-snap.component.scss'
 })
 export class FaceSnapComponent implements OnInit{
-  title!:string;
+  @Input() faceSnap!:FaceSnap;
+ /* title!:string;
   description!:string |undefined;
   createdAt!:Date;
-  snaps!:number;
+  snaps!:number;*/
   imageUrl:string |undefined;
   snapButtonText!:string;
+  userHasSnapped!:boolean;
 
   ngOnInit(): void {
-    this.title="My title facesnap";
+    /*this.title="My title facesnap";
     this.description="My description facesnap"
     this.createdAt=new Date();
     this.snaps=0;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
-   this.snapButtonText="Snap liked";
+     */
+    this.snapButtonText="Snap liked";
+   this.userHasSnapped=false;
   }
    /*onAddSnaps():void{
     this.snaps++;
@@ -29,7 +34,7 @@ export class FaceSnapComponent implements OnInit{
       alert("Oops Snaps");
       this.snaps=0;
     }*/
-   onAddOrRemoveSnap():void{
+   /*onAddOrRemoveSnap():void{
     this.snaps++;
      if(this.snaps>1){
       this.snaps=0;
@@ -37,6 +42,24 @@ export class FaceSnapComponent implements OnInit{
      }else{
       this.snapButtonText="Snap liked";
      }
-   }
-   
+   }*/
+  onSnap(): void {
+      if (this.userHasSnapped) {
+        this.unSnap();
+      } else {
+        this.snap();
+      }
+    }
+  
+  unSnap() {
+      this.faceSnap.RemoveSnap();
+        this.snapButtonText = 'Oops, unSnap!';
+        this.userHasSnapped = false;  
+  }
+  
+  snap() {
+    this.faceSnap.addSnap();
+      this.snapButtonText = 'Oh Snap!';
+      this.userHasSnapped = true;
+  }
 }
