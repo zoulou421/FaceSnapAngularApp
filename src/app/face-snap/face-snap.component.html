@@ -5,4 +5,12 @@
 <p> <button (click)="onSnap()">{{snapButtonText}}</button>
     🤌 {{ faceSnap.snap }}
 </p>
+@if (faceSnap.location) {
+    <p>Localisation : {{ faceSnap.location }}</p>
+} @else {
+    <p>Localisation non specified</p>
+}
+
+
+
 <!--p><img src="{{imageUrl}}" /></p-->

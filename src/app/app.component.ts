@@ -16,14 +16,35 @@ import { FaceSnap } from './models/face-snap';
 export class AppComponent  implements OnInit{
   //title = 'myapp'; //to remove
   myFaceSnap!:FaceSnap
+  myOtherFaceSnap!:FaceSnap
+  myLastFaceSnap!:FaceSnap
   ngOnInit(): void {
     this.myFaceSnap=new FaceSnap(
-      "My title facesnap",
-      "My description facesnap",
+      "My title facesnap 1",
+      "My description facesnap 1",
       "https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg",
        new Date(),
       0
     );
+    this.myFaceSnap.setLocation("Canada, Toronto");
+    
+    this.myOtherFaceSnap=new FaceSnap(
+      "My title facesnap 2",
+      "My description facesnap 2",
+      "https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg",
+       new Date(),
+      0
+    );
+    this.myOtherFaceSnap.setLocation("Dakar Senegal");
+
+    this.myLastFaceSnap=new FaceSnap(
+      "My title facesnap 3",
+      "My description facesnap 3",
+      "https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg",
+       new Date(),
+      0
+    );
+    this.myLastFaceSnap.setLocation("USA, DC Washington");
   }
 
 
