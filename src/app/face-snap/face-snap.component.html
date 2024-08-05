@@ -1,7 +1,7 @@
 <div class="face-snap-card" [ngClass]="{snapped:userHasSnapped}">
-    <h2>{{ faceSnap.title }}</h2>
+    <h2>{{ faceSnap.title |titlecase }}</h2>
 <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"/>
-<p>published online date: {{ faceSnap.createdAt }}</p>
+<p>published online date: {{ faceSnap.createdAt |date:'dd MMMM yyyy , HH:mm'}}</p>
 <p>{{ faceSnap.description }}</p>
 <p> <button (click)="onSnap()">{{snapButtonText}}</button>
    <span [ngStyle]="{color:'rgb(0,'+faceSnap.snap+',0)'}"> 🤌 {{ faceSnap.snap }}</span>
