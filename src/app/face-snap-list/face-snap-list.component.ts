@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { FaceSnapComponent } from "../face-snap/face-snap.component";
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap-list',
@@ -11,9 +12,13 @@ import { FaceSnapComponent } from "../face-snap/face-snap.component";
 })
 export class FaceSnapListComponent implements OnInit{
   faceSnap!:FaceSnap[];
+  constructor(private faceSnapService:FaceSnapsService ){
+
+  }
 
   ngOnInit(): void {
-    this.faceSnap=[
+    this.faceSnap=this.faceSnapService.getFaceSnaps();
+    /*[
       new FaceSnap(
         "My title facesnap 1",
         "My description facesnap 1",
@@ -37,7 +42,8 @@ export class FaceSnapListComponent implements OnInit{
         0
       )
     ];
-    this.faceSnap[0].setLocation("Dakar Senegal");
+    this.faceSnap[0].setLocation("Dakar Senegal");*/
+    //this.faceSnap[0].setLocation("Dakar Senegal");
 
   }
 
