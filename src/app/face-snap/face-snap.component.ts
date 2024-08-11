@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { CurrencyPipe, DatePipe, DecimalPipe, LowerCasePipe, NgClass, NgStyle, PercentPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { FaceSnapsService } from '../services/face-snaps.service';
 
 @Component({
   selector: 'app-face-snap',
@@ -31,6 +32,10 @@ export class FaceSnapComponent implements OnInit{
   myLargeNumber=4667916.76;
   myLargeNumberPercentage=0.3337;
   myPrice=336.15;
+
+  constructor(private faceSnapService:FaceSnapsService){
+
+  }
 
   ngOnInit(): void {
     /*this.title="My title facesnap";
@@ -65,17 +70,28 @@ export class FaceSnapComponent implements OnInit{
       }
     }
   
-  unSnap() {
+  /*unSnap() {
       this.faceSnap.RemoveSnap();
         this.snapButtonText = 'Oops, unSnap!';
         this.userHasSnapped = false;  
-  }
+  }*/
+    unSnap() {
+        //this.faceSnap.RemoveSnap();
+        this.faceSnapService.snapFaceSnapById(this.faceSnap.id,"unsap");
+        this.snapButtonText = 'Oops, unSnap!';
+        this.userHasSnapped = false;  
+    }
   
-  snap() {
-    this.faceSnap.addSnap();
+ /* snap() {
+      this.faceSnap.addSnap();
       this.snapButtonText = 'Oh Snap!';
       this.userHasSnapped = true;
-  }
+  }*/
+      snap() {
+        this.faceSnapService.snapFaceSnapById(this.faceSnap.id,"snap")
+        this.snapButtonText = 'Oh Snap!';
+        this.userHasSnapped = true;
+    }
 
   
 }

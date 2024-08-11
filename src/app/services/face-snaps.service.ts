@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { FaceSnap } from "../models/face-snap";
+import { SnapType } from "../models/snap-type.type";
 
 @Injectable({
     providedIn:'root'
 })
 export class FaceSnapsService{
-    private faceSnap:FaceSnap[]=[
+    private faceSnaps:FaceSnap[]=[
         new FaceSnap(
           "My title facesnap 1",
           "My description facesnap 1",
@@ -30,6 +31,30 @@ export class FaceSnapsService{
         )
       ];
       getFaceSnaps():FaceSnap[]{
-        return [...this.faceSnap]
+        return [...this.faceSnaps]
       }
-}
+      snapFaceSnapByIdAdd(faceSnapId: string):void{
+        const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId);
+        if (!foundFaceSnap) {
+          throw new Error('FaceSnap not found!');
+        }
+        foundFaceSnap.addSnap();
+      }
+
+      snapFaceSnapByIdRemove(faceSnapId: string):void{
+        const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId);
+        if (!foundFaceSnap) {
+          throw new Error('FaceSnap not found!');
+        }
+        foundFaceSnap.removeSnap();
+      }
+
+      snapFaceSnapById(faceSnapId: string,snapType:SnapType):void{
+        const foundFaceSnap = this.faceSnaps.find(faceSnap => faceSnap.id === faceSnapId);
+        if (!foundFaceSnap) {
+          throw new Error('FaceSnap not found!');
+        }
+        foundFaceSnap.mySnap(snapType);
+      }
+  }
+      
