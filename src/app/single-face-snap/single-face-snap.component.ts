@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { CurrencyPipe, DatePipe, DecimalPipe, LowerCasePipe, NgClass, NgStyle, PercentPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { FaceSnapsService } from '../services/face-snaps.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-single-face-snap',
@@ -16,7 +16,8 @@ import { ActivatedRoute } from '@angular/router';
     DatePipe,
     DecimalPipe,
     PercentPipe,
-    CurrencyPipe
+    CurrencyPipe,
+    RouterLink,
   ],
   templateUrl: './single-face-snap.component.html',
   styleUrl: './single-face-snap.component.scss'
@@ -48,11 +49,11 @@ export class SingleFaceSnapComponent implements OnInit{
     this.snaps=0;
     this.imageUrl = 'https://cdn.pixabay.com/photo/2015/05/31/16/03/teddy-bear-792273_1280.jpg';
      */
-    this.snapButtonText="Snap liked";
-    this.userHasSnapped=false;
+    this.prepareInterface();
 
-    const faceSnapId=this.route.snapshot.params['id'];
-    this.faceSnap=this.faceSnapService.getFaceSnapById(faceSnapId);
+    //const faceSnapId=this.route.snapshot.params['id'];
+    //this.faceSnap=this.faceSnapService.getFaceSnapById(faceSnapId);
+    this.getIdFaceSnap();
 
   }
    /*onAddSnaps():void{
@@ -101,5 +102,13 @@ export class SingleFaceSnapComponent implements OnInit{
         this.userHasSnapped = true;
     }
 
-  
+  private getIdFaceSnap(){
+    const faceSnapId=this.route.snapshot.params['id'];
+    this.faceSnap=this.faceSnapService.getFaceSnapById(faceSnapId);
+  }
+
+  private prepareInterface(){
+    this.snapButtonText="Snap liked";
+    this.userHasSnapped=false;
+  }
 }

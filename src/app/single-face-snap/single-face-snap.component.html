@@ -3,6 +3,7 @@
     <h1>{{myLargeNumberPercentage|percent:'1.0-1'}}</h1>
     <h1>{{myPrice|currency:'EUR':'code':'1.0-0'}}</h1>
     <h2>{{ faceSnap.title |titlecase }}</h2>
+    <a routerLink="/facesnaps">Back</a>
 <img [src]="faceSnap.imageUrl" [alt]="faceSnap.title"/>
 <p>Date de publication: {{ faceSnap.createdAt |date:'dd MMMM yyyy , HH:mm'}}</p>
 <p>{{ faceSnap.description }}</p>

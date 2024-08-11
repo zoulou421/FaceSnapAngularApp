@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FaceSnap } from '../models/face-snap';
 import { CurrencyPipe, DatePipe, DecimalPipe, LowerCasePipe, NgClass, NgStyle, PercentPipe, TitleCasePipe, UpperCasePipe } from '@angular/common';
 import { FaceSnapsService } from '../services/face-snaps.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-face-snap',
@@ -21,6 +22,7 @@ import { FaceSnapsService } from '../services/face-snaps.service';
   styleUrl: './face-snap.component.scss'
 })
 export class FaceSnapComponent implements OnInit{
+
   @Input() faceSnap!:FaceSnap;
  /* title!:string;
   description!:string |undefined;
@@ -33,9 +35,8 @@ export class FaceSnapComponent implements OnInit{
   myLargeNumberPercentage=0.3337;
   myPrice=336.15;
 
-  constructor(private faceSnapService:FaceSnapsService){
-
-  }
+ // constructor(private faceSnapService:FaceSnapsService){}
+ constructor(private faceSnapService:FaceSnapsService,private route:Router){}
 
   ngOnInit(): void {
     /*this.title="My title facesnap";
@@ -91,6 +92,11 @@ export class FaceSnapComponent implements OnInit{
         this.faceSnapService.snapFaceSnapById(this.faceSnap.id,"snap")
         this.snapButtonText = 'Oh Snap!';
         this.userHasSnapped = true;
+    }
+
+
+    onViewFaceSnap() {
+      this.route.navigateByUrl(`facesnaps/${this.faceSnap.id}`);
     }
 
   
